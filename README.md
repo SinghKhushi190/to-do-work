@@ -1,3 +1,2 @@
 # to-do-work
-</br>
-*1.image gallery with lightbox.*
+#*image gallery with lightbox.*
