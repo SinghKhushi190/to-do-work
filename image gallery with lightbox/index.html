@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery with Lightbox</title>
+    <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #ff3cac, #ffb347);
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  color: #fff;
+}
+
+.content {
+  max-width: 45%;
+}
+
+.badge {
+  border: 1px solid #fff;
+  padding: 6px 14px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 52px;
+  margin: 20px 0;
+}
+
+p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  gap: 15px;
+}
+
+.gallery img {
+  width: 180px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox-box {
+  position: relative;
+  background: #1e1e2f;
+  padding: 15px;
+  border-radius: 12px;
+  animation: zoom 0.4s ease;
+}
+
+.lightbox img {
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+/* Controls */
+.close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ff4d6d;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left { left: -40px; }
+.right { right: -40px; }
+
+@keyframes zoom {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+    </style>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Image Lightbox</title>
+        <link rel="stylesheet" href="style.css" />
+      </head>
+      <body>
+        <section class="hero">
+          <div class="content">
+            <span class="badge">NEW FEATURE</span>
+            <h1>Image Lightbox</h1>
+            <p>
+              The easiest way to pop-up a lightbox for your images, galleries &
+              videos!
+            </p>
+          </div>
+
+          <div class="gallery">
+            <img
+              src="./images/bugatti-sport-car-77.jpg"
+              alt="bugatti-sport-car-77"
+              onclick="openLightbox(0)"
+            />
+            <img src="./images/OIP (1).webp" alt="OIP (1)" onclick="openLightbox(1)" />
+            <img src="./images/OIP (2).webp" alt="OIP (2)" onclick="openLightbox(2)" />
+            <img src="./images/OIP (3).webp" alt="OIP (3)" onclick="openLightbox(3)" />
+            <img src="./images/OIP (4).webp" alt="OIP (4)" onclick="openLightbox(4)" />
+            <img src="./images/OIP (5).webp" alt="OIP (5)" onclick="openLightbox(5)" />
+          </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+          <div class="lightbox-box">
+            <span class="close" onclick="closeLightbox()">×</span>
+            <span class="nav left" onclick="changeImage(-1)">‹</span>
+            <img id="lightboxImg" />
+            <span class="nav right" onclick="changeImage(1)">›</span>
+          </div>
+        </div>
+
+        <script src="script.js"></script>
+      </body>
+    </html>
+
+  </body>
+  <script>
+ const images = [
+  "./images/bugatti-sport-car-77.jpg",
+  "./images/OIP (1).webp",
+  "./images/OIP (2).webp",
+  "./images/OIP (3).webp",
+  "./images/OIP (4).webp",
+  "./images/OIP (5).webp"
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightboxImg").src = images[currentIndex];
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function changeImage(step) {
+  currentIndex = (currentIndex + step + images.length) % images.length;
+  document.getElementById("lightboxImg").src = images[currentIndex];
+}
+
+  </script>
+</html>
