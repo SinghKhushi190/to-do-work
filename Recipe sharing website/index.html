@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delish Recipes</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #fffaf5; color: #333; }
+
+    header {
+      background: linear-gradient(to right, #ff9a3c, #ff6f3c);
+      color: white;
+      padding: 60px 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header h1 { font-size: 3rem; }
+    header p { margin: 15px 0; font-size: 1.1rem; }
+    header button {
+      background: white;
+      color: #ff6f3c;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    header button:hover { background: #ffe6d5; }
+
+    .hero-img img {
+      width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    section {
+      padding: 60px 10%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 { font-size: 2.3rem; }
+    .section-title p { color: #777; }
+
+    .recipes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 { margin-bottom: 10px; }
+    .card-content p { font-size: 0.9rem; color: #666; }
+
+    .cta {
+      background: #ff6f3c;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 30px;
+    }
+
+    .cta h2 { font-size: 2.2rem; margin-bottom: 15px; }
+    .cta button {
+      margin-top: 20px;
+      background: white;
+      color: #ff6f3c;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #fff0e6;
+      margin-top: 60px;
+    }
+
+    @media(max-width: 768px) {
+      header { text-align: center; }
+      .hero-img { margin-top: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-text">
+      <h1>Delish Recipes</h1>
+      <p>Discover easy, tasty & healthy recipes made for everyday cooking.</p>
+      <button>Explore Recipes</button>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Food" />
+    </div>
+  </header>
+
+  <!-- Featured Recipes -->
+  <section>
+    <div class="section-title">
+      <h2>Featured Recipes</h2>
+      <p>Handpicked dishes you'll love to cook & eat</p>
+    </div>
+
+    <div class="recipes">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e" alt="Italian Pasta" />
+        <div class="card-content">
+          <h3>Italian Pasta</h3>
+          <p>Creamy, cheesy and loaded with authentic Italian flavours.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe" />
+        <div class="card-content">
+          <h3>Healthy Salad</h3>
+          <p>Fresh veggies with a light dressing for a perfect meal.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349" />
+        <div class="card-content">
+          <h3>Classic Burger</h3>
+          <p>Juicy, crispy and full of bold flavours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call To Action -->
+  <section class="cta">
+    <h2>Cook Something Amazing Today</h2>
+    <p>Join thousands of food lovers exploring new recipes daily.</p>
+    <button>Get Started</button>
+  </section>
+
+  <footer>
+    <p>© 2026 Delish Recipes | Made with ❤️ for food lovers</p>
+  </footer>
+
+</body>
+</html>
