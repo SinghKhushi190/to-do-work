@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: url("maxresdefault.jpg") center/cover no-repeat fixed;
+        display: flex;
+        align-items: center;
+        padding-left: 60px;
+      }
+
+      /* GLASS CARD */
+      .form-card {
+        width: 360px;
+        padding: 25px 25px 30px;
+        border-radius: 10px;
+
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      .form-card h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #000;
+      }
+
+      .field {
+        margin-bottom: 15px;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        border: none;
+        background: rgba(255, 255, 255, 0.75);
+        outline: none;
+      }
+
+      .field input:focus,
+      .field select:focus {
+        border: 1px solid #3f5870;
+      }
+
+      .gender {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #000;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #3f5870;
+        border: none;
+        color: #fff;
+        font-size: 15px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #344a5f;
+      }
+
+      .error {
+        color: #b00020;
+        font-size: 13px;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .success {
+        color: #0f7c2a;
+        text-align: center;
+        margin-top: 15px;
+        display: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-card">
+      <h2>Registration</h2>
+
+      <form id="regForm">
+        <div class="field">
+          <input type="text" id="firstName" placeholder="First Name" />
+          <div class="error">First name is required</div>
+        </div>
+
+        <div class="field">
+          <input type="text" id="lastName" placeholder="Last Name" />
+          <div class="error">Last name is required</div>
+        </div>
+
+        <div class="field">
+          <input type="email" id="email" placeholder="Email" />
+          <div class="error">Enter a valid email</div>
+        </div>
+
+        <div class="field">
+          <input type="password" id="password" placeholder="Password" />
+          <div class="error">Password must be at least 6 characters</div>
+        </div>
+
+        <div class="gender">
+          <label><input type="radio" name="gender" checked /> Male</label>
+          <label><input type="radio" name="gender" /> Female</label>
+        </div>
+
+        <div class="field">
+          <select id="country">
+            <option value="">Select Country</option>
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+            <option>Canada</option>
+          </select>
+          <div class="error">Please select a country</div>
+        </div>
+
+        <button type="submit">Signup</button>
+      </form>
+
+      <div class="success">Registration successful!</div>
+    </div>
+
+    <script>
+      const form = document.getElementById("regForm");
+      const successMsg = document.querySelector(".success");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let valid = true;
+        successMsg.style.display = "none";
+
+        const firstName = document.getElementById("firstName");
+        const lastName = document.getElementById("lastName");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const country = document.getElementById("country");
+
+        document
+          .querySelectorAll(".error")
+          .forEach((err) => (err.style.display = "none"));
+
+        if (firstName.value.trim() === "") {
+          firstName.nextElementSibling.style.display = "block";
+          valid = false;
+        }
+
+        if (lastName.value.trim() === "") {
+          lastName.nextElementSibling.style.display = "block";
+          valid = false;
+        }
+
+        if (!email.value.includes("@")) {
+          email.nextElementSibling.style.display = "block";
+          valid = false;
+        }
+
+        if (password.value.length < 6) {
+          password.nextElementSibling.style.display = "block";
+          valid = false;
+        }
+
+        if (country.value === "") {
+          country.nextElementSibling.style.display = "block";
+          valid = false;
+        }
+
+        if (valid) {
+          successMsg.style.display = "block";
+          form.reset();
+        }
+      });
+    </script>
+  </body>
+</html>
