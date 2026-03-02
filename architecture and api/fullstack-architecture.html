@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Full-Stack Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --react: #61dafb;
+    --node: #8cc84b;
+    --mongo: #4db33d;
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8e4de;
+    --muted: #6b7280;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+    overflow-x: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #e8e4de 30%, #8cc84b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .page-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 52px;
+  }
+
+  /* ── STACK ── */
+  .stack { display: flex; flex-direction: column; gap: 0; }
+
+  /* ── LAYER CARD ── */
+  .layer {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: rise 0.6s ease forwards;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .layer:hover { box-shadow: 0 0 40px -8px var(--accent); border-color: var(--accent); }
+  .layer:nth-child(1) { animation-delay: 0.1s; --accent: var(--react); }
+  .layer:nth-child(3) { animation-delay: 0.3s; --accent: var(--node); }
+  .layer:nth-child(5) { animation-delay: 0.5s; --accent: var(--mongo); }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* accent bar on left */
+  .layer::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 20px; bottom: 20px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+
+  .layer-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .layer-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .layer-label { font-size: 0.65rem; font-family: 'DM Mono', monospace; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+  .layer-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
+
+  .tech-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* items grid */
+  .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 0.83rem;
+    color: #c0bbb4;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .item:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); color: var(--text); }
+  .item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+
+  /* ── ARROW CONNECTOR ── */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0;
+    gap: 0;
+    opacity: 0;
+    animation: rise 0.4s ease forwards;
+  }
+  .connector:nth-of-type(2) { animation-delay: 0.2s; }
+  .connector:nth-of-type(4) { animation-delay: 0.4s; }
+  .conn-line { width: 1px; height: 28px; background: linear-gradient(to bottom, transparent, var(--muted)); }
+  .conn-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: var(--bg);
+  }
+  .conn-arrow { color: var(--muted); font-size: 0.8rem; margin-top: -2px; }
+  .conn-line2 { width: 1px; height: 28px; background: linear-gradient(to bottom, var(--muted), transparent); }
+
+  /* ── DATA FLOW ── */
+  .flow-section {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    opacity: 0;
+    animation: rise 0.6s 0.7s ease forwards;
+  }
+  .flow-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flow-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .flow-node {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    text-align: center;
+    white-space: nowrap;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .flow-node:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .flow-node.react { border-color: var(--react); color: var(--react); }
+  .flow-node.node  { border-color: var(--node); color: var(--node); }
+  .flow-node.mongo { border-color: var(--mongo); color: var(--mongo); }
+  .flow-node.api   { border-color: #f59e0b; color: #f59e0b; }
+  .flow-arrow {
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 0 8px;
+  }
+  .flow-note {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 5px;
+    font-family: 'DM Mono', monospace;
+    display: block;
+  }
+
+  /* ── RESPONSIBILITY TABLE ── */
+  .resp-section {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    opacity: 0;
+    animation: rise 0.6s 0.85s ease forwards;
+  }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 0;
+    font-size: 0.83rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { width: 30%; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.78rem; }
+  td:nth-child(2) { padding-right: 20px; }
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  .tag.react { background: rgba(97,218,251,0.1); color: var(--react); }
+  .tag.node  { background: rgba(140,200,75,0.1); color: var(--node); }
+  .tag.mongo { background: rgba(77,179,61,0.1); color: var(--mongo); }
+
+  @media (max-width: 600px) {
+    .items { grid-template-columns: 1fr 1fr; }
+    .tech-badge { display: none; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <h1 class="page-title">Full-Stack Architecture</h1>
+  <p class="page-sub">React · Node.js · MongoDB</p>
+
+  <div class="stack">
+
+    <!-- FRONTEND -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-icon">⚛️</div>
+        <div>
+          <div class="layer-label">Layer 1 · Client</div>
+          <div class="layer-title">Frontend</div>
+        </div>
+        <div class="tech-badge">React.js</div>
+      </div>
+      <div class="items">
+        <div class="item"><span class="item-dot"></span>UI Components & Pages</div>
+        <div class="item"><span class="item-dot"></span>Design & Animations</div>
+        <div class="item"><span class="item-dot"></span>Buttons & Forms</div>
+        <div class="item"><span class="item-dot"></span>State Management</div>
+        <div class="item"><span class="item-dot"></span>Routing (React Router)</div>
+        <div class="item"><span class="item-dot"></span>API Calls (fetch/axios)</div>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 1 -->
+    <div class="connector">
+      <div class="conn-line"></div>
+      <div class="conn-label">HTTP Requests / REST API</div>
+      <div class="conn-arrow">↕</div>
+      <div class="conn-line2"></div>
+    </div>
+
+    <!-- BACKEND -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-icon">🟢</div>
+        <div>
+          <div class="layer-label">Layer 2 · Server</div>
+          <div class="layer-title">Backend</div>
+        </div>
+        <div class="tech-badge">Node.js + Express</div>
+      </div>
+      <div class="items">
+        <div class="item"><span class="item-dot"></span>API Routes (CRUD)</div>
+        <div class="item"><span class="item-dot"></span>Business Logic</div>
+        <div class="item"><span class="item-dot"></span>Authentication (JWT)</div>
+        <div class="item"><span class="item-dot"></span>Input Validation</div>
+        <div class="item"><span class="item-dot"></span>File Uploads (Multer)</div>
+        <div class="item"><span class="item-dot"></span>Middleware & CORS</div>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 2 -->
+    <div class="connector">
+      <div class="conn-line"></div>
+      <div class="conn-label">Mongoose ODM Queries</div>
+      <div class="conn-arrow">↕</div>
+      <div class="conn-line2"></div>
+    </div>
+
+    <!-- DATABASE -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-icon">🍃</div>
+        <div>
+          <div class="layer-label">Layer 3 · Data</div>
+          <div class="layer-title">Database</div>
+        </div>
+        <div class="tech-badge">MongoDB</div>
+      </div>
+      <div class="items">
+        <div class="item"><span class="item-dot"></span>User Accounts</div>
+        <div class="item"><span class="item-dot"></span>Portfolio Projects</div>
+        <div class="item"><span class="item-dot"></span>Blog Posts</div>
+        <div class="item"><span class="item-dot"></span>Client Inquiries</div>
+        <div class="item"><span class="item-dot"></span>Images & Media refs</div>
+        <div class="item"><span class="item-dot"></span>Sessions / Tokens</div>
+      </div>
+    </div>
+
+  </div><!-- /stack -->
+
+  <!-- DATA FLOW -->
+  <div class="flow-section">
+    <div class="flow-title">Request Life Cycle</div>
+    <div class="flow">
+      <div class="flow-step">
+        <div>
+          <div class="flow-node react">React UI</div>
+          <span class="flow-note">user clicks</span>
+        </div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <div>
+          <div class="flow-node api">API Call</div>
+          <span class="flow-note">fetch / axios</span>
+        </div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <div>
+          <div class="flow-node node">Express Route</div>
+          <span class="flow-note">auth + logic</span>
+        </div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <div>
+          <div class="flow-node mongo">MongoDB</div>
+          <span class="flow-note">read / write</span>
+        </div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <div>
+          <div class="flow-node node">JSON Response</div>
+          <span class="flow-note">back to client</span>
+        </div>
+        <div class="flow-arrow">→</div>
+      </div>
+      <div class="flow-step">
+        <div>
+          <div class="flow-node react">UI Updates</div>
+          <span class="flow-note">re-render</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONSIBILITY TABLE -->
+  <div class="resp-section">
+    <div class="flow-title">Who Does What</div>
+    <table>
+      <tr><th>Task</th><th>Handled By</th><th>Layer</th></tr>
+      <tr>
+        <td>Show a project gallery</td>
+        <td>React component renders cards from API data</td>
+        <td><span class="tag react">React</span></td>
+      </tr>
+      <tr>
+        <td>Submit contact form</td>
+        <td>React sends POST → Express validates → saves to MongoDB</td>
+        <td><span class="tag react">React</span><span class="tag node">Node</span><span class="tag mongo">Mongo</span></td>
+      </tr>
+      <tr>
+        <td>Login / Auth</td>
+        <td>Express checks credentials, issues JWT; React stores token</td>
+        <td><span class="tag node">Node</span><span class="tag react">React</span></td>
+      </tr>
+      <tr>
+        <td>Store blog post</td>
+        <td>Express receives data → Mongoose saves document</td>
+        <td><span class="tag node">Node</span><span class="tag mongo">Mongo</span></td>
+      </tr>
+      <tr>
+        <td>Animate page transitions</td>
+        <td>React (Framer Motion / CSS)</td>
+        <td><span class="tag react">React</span></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

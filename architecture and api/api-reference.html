@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interior Design API Reference</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f5f0eb;
+        color: #2d2d2d;
+      }
+      header {
+        background: linear-gradient(135deg, #3d2b1f, #7a5c44);
+        color: white;
+        padding: 28px 40px;
+      }
+      header h1 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+      }
+      header p {
+        opacity: 0.75;
+        margin-top: 4px;
+        font-size: 0.9rem;
+      }
+      .badge {
+        display: inline-block;
+        background: #c9a87c;
+        color: #2d2d2d;
+        font-size: 0.7rem;
+        font-weight: bold;
+        padding: 2px 8px;
+        border-radius: 20px;
+        margin-left: 10px;
+        vertical-align: middle;
+      }
+      main {
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+      .section {
+        background: white;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+      }
+      .section-header {
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .section-header h2 {
+        font-size: 1.05rem;
+      }
+      .icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .portfolio .icon {
+        background: #eef4ff;
+      }
+      .inquiry .icon {
+        background: #fff4ee;
+      }
+      .blog .icon {
+        background: #eefff4;
+      }
+      .routes {
+        padding: 0 24px 16px;
+        display: none;
+      }
+      .routes.open {
+        display: block;
+      }
+      .route {
+        display: grid;
+        grid-template-columns: 70px 1fr auto;
+        align-items: start;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0ebe5;
+      }
+      .route:last-child {
+        border-bottom: none;
+      }
+      .method {
+        font-size: 0.72rem;
+        font-weight: bold;
+        padding: 3px 8px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .GET {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+      .POST {
+        background: #dcfce7;
+        color: #15803d;
+      }
+      .PUT {
+        background: #fef9c3;
+        color: #a16207;
+      }
+      .DELETE {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .PATCH {
+        background: #f3e8ff;
+        color: #7c3aed;
+      }
+      .endpoint {
+        font-family: monospace;
+        font-size: 0.88rem;
+        color: #3d2b1f;
+        font-weight: 600;
+      }
+      .desc {
+        font-size: 0.82rem;
+        color: #666;
+        margin-top: 2px;
+      }
+      .body-hint {
+        font-size: 0.75rem;
+        color: #999;
+        font-family: monospace;
+        margin-top: 4px;
+        background: #f9f6f3;
+        padding: 4px 8px;
+        border-radius: 4px;
+        line-height: 1.6;
+      }
+      .chevron {
+        transition: transform 0.2s;
+        font-size: 0.8rem;
+        color: #999;
+      }
+      .chevron.open {
+        transform: rotate(180deg);
+      }
+      .setup {
+        background: #3d2b1f;
+        color: #f0e6d3;
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-bottom: 24px;
+      }
+      .setup h3 {
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .setup code {
+        display: block;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        padding: 10px 14px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+      }
+      .tip {
+        background: #fffbeb;
+        border-left: 4px solid #f59e0b;
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.82rem;
+        color: #78350f;
+        margin-bottom: 16px;
+      }
+      .tip strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        🏠 Interior Design API <span class="badge">Node.js + Express</span>
+      </h1>
+      <p>
+        Backend reference for Portfolio, Inquiries & Blog — running on
+        localhost:5000
+      </p>
+    </header>
+
+    <main>
+      <div class="setup">
+        <h3>Quick Start</h3>
+        <code>npm install</code>
+        <code>npm run dev &nbsp;&nbsp;&nbsp;# development (auto-reload)</code>
+        <code>npm start &nbsp;&nbsp;&nbsp;&nbsp;# production</code>
+      </div>
+
+      <div class="tip">
+        <strong>💡 Production tip</strong>
+        The server currently uses in-memory storage. Replace the arrays with
+        <strong>MongoDB (Mongoose)</strong> or
+        <strong>PostgreSQL (Prisma)</strong> for persistent data.
+      </div>
+
+      <!-- PORTFOLIO -->
+      <div class="section portfolio">
+        <div class="section-header" onclick="toggle(this)">
+          <div class="icon">🖼️</div>
+          <h2>Portfolio Projects</h2>
+          <span style="margin-left: auto" class="chevron">▼</span>
+        </div>
+        <div class="routes open">
+          <div class="route">
+            <span class="method GET">GET</span>
+            <div>
+              <div class="endpoint">/api/portfolio</div>
+              <div class="desc">Fetch all projects</div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method GET">GET</span>
+            <div>
+              <div class="endpoint">/api/portfolio/:id</div>
+              <div class="desc">Fetch single project by ID</div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method POST">POST</span>
+            <div>
+              <div class="endpoint">/api/portfolio</div>
+              <div class="desc">
+                Create a new project (supports image upload)
+              </div>
+              <div class="body-hint">
+                form-data: title*, description, roomType, tags, images[]
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method PUT">PUT</span>
+            <div>
+              <div class="endpoint">/api/portfolio/:id</div>
+              <div class="desc">Update project details</div>
+              <div class="body-hint">
+                JSON: { title, description, roomType, tags }
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method DELETE">DELETE</span>
+            <div>
+              <div class="endpoint">/api/portfolio/:id</div>
+              <div class="desc">Delete a project</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INQUIRIES -->
+      <div class="section inquiry">
+        <div class="section-header" onclick="toggle(this)">
+          <div class="icon">📬</div>
+          <h2>Client Inquiries</h2>
+          <span style="margin-left: auto" class="chevron open">▼</span>
+        </div>
+        <div class="routes open">
+          <div class="route">
+            <span class="method GET">GET</span>
+            <div>
+              <div class="endpoint">/api/inquiries</div>
+              <div class="desc">Fetch all client inquiries (admin)</div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method POST">POST</span>
+            <div>
+              <div class="endpoint">/api/inquiries</div>
+              <div class="desc">Submit a contact form inquiry</div>
+              <div class="body-hint">
+                JSON: { name*, email*, message*, phone, serviceType }
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method PATCH">PATCH</span>
+            <div>
+              <div class="endpoint">/api/inquiries/:id/status</div>
+              <div class="desc">Update status: new → read → replied</div>
+              <div class="body-hint">JSON: { status: "read" | "replied" }</div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method DELETE">DELETE</span>
+            <div>
+              <div class="endpoint">/api/inquiries/:id</div>
+              <div class="desc">Delete an inquiry</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOGS -->
+      <div class="section blog">
+        <div class="section-header" onclick="toggle(this)">
+          <div class="icon">📝</div>
+          <h2>Blog Posts</h2>
+          <span style="margin-left: auto" class="chevron open">▼</span>
+        </div>
+        <div class="routes open">
+          <div class="route">
+            <span class="method GET">GET</span>
+            <div>
+              <div class="endpoint">/api/blogs</div>
+              <div class="desc">Fetch all blogs</div>
+              <div class="body-hint">
+                query: ?category=trends &amp;published=true
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method GET">GET</span>
+            <div>
+              <div class="endpoint">/api/blogs/:id</div>
+              <div class="desc">Fetch by ID or slug</div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method POST">POST</span>
+            <div>
+              <div class="endpoint">/api/blogs</div>
+              <div class="desc">Create a blog post (with cover image)</div>
+              <div class="body-hint">
+                form-data: title*, content*, category, tags, published,
+                coverImage
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method PUT">PUT</span>
+            <div>
+              <div class="endpoint">/api/blogs/:id</div>
+              <div class="desc">Update a blog post</div>
+              <div class="body-hint">
+                JSON: { title, content, category, tags, published }
+              </div>
+            </div>
+          </div>
+          <div class="route">
+            <span class="method DELETE">DELETE</span>
+            <div>
+              <div class="endpoint">/api/blogs/:id</div>
+              <div class="desc">Delete a blog post</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function toggle(header) {
+        const routes = header.nextElementSibling;
+        const chevron = header.querySelector(".chevron");
+        routes.classList.toggle("open");
+        chevron.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
