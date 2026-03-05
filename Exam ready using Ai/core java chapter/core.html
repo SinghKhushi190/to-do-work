@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Unit III – Study Summary</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="core.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <div class="tag">// Java Programming · Unit III</div>
+        <h1>Core of Java</h1>
+        <div class="header-meta">
+          <span class="badge accent">08 Hours</span>
+          <span class="badge">14 Topics</span>
+          <span class="badge">Exam Ready</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="search-wrap">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search topics..."
+        oninput="filterCards()"
+      />
+      <div class="filter-btns">
+        <button
+          class="filter-btn active"
+          data-cat="all"
+          onclick="setFilter('all', this)"
+        >
+          All
+        </button>
+        <button
+          class="filter-btn"
+          data-cat="oop"
+          onclick="setFilter('oop', this)"
+        >
+          OOP
+        </button>
+        <button
+          class="filter-btn"
+          data-cat="methods"
+          onclick="setFilter('methods', this)"
+        >
+          Methods
+        </button>
+        <button
+          class="filter-btn"
+          data-cat="data"
+          onclick="setFilter('data', this)"
+        >
+          Data
+        </button>
+        <button
+          class="filter-btn"
+          data-cat="modifiers"
+          onclick="setFilter('modifiers', this)"
+        >
+          Modifiers
+        </button>
+      </div>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">0 / 14 learned</div>
+    </div>
+
+    <div class="grid" id="cardGrid">
+      <!-- 1. Classes -->
+      <div class="card" data-cat="oop" data-topic="classes objects features">
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="topic-icon" style="background: rgba(0, 212, 255, 0.1)">
+              ☕
+            </div>
+            <h2>Classes, Objects & Features</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(0, 212, 255, 0.1); color: var(--accent)"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            A <strong>Class</strong> is a blueprint/template that defines
+            attributes (fields) and behaviors (methods). An
+            <strong>Object</strong> is a real-world instance of a class with its
+            own state and identity.
+          </p>
+          <ul class="key-points">
+            <li>Class = blueprint; Object = instance of that blueprint</li>
+            <li>
+              Java is purely object-oriented (everything is inside a class)
+            </li>
+            <li>
+              Key OOP features: Encapsulation, Inheritance, Polymorphism,
+              Abstraction
+            </li>
+            <li>Objects are created using the <code>new</code> keyword</li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">class</span> <span class="cl">Car</span> {
+            <span class="cl">String</span> brand;
+            <span class="cm">// field</span>
+            <span class="kw">void</span> drive() {}
+            <span class="cm">// method</span>
+            }
+            <span class="cl">Car</span> c = <span class="kw">new</span>
+            <span class="cl">Car</span>(); <span class="cm">// object</span>
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Define class vs object with a
+            real-world analogy (e.g., "Dog" class → "Tommy" object).
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-easy">Easy</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Object Declaration & Initialization -->
+      <div
+        class="card"
+        data-cat="oop"
+        data-topic="object declaration initialization new"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(124, 58, 237, 0.15)"
+            >
+              🏗️
+            </div>
+            <h2>Object Declaration & Initialization</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(124, 58, 237, 0.15); color: #a78bfa"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            <strong>Declaration</strong> creates a reference variable.
+            <strong>Initialization</strong> allocates memory and links the
+            reference to an actual object using <code>new</code>.
+          </p>
+          <ul class="key-points">
+            <li>
+              Declaration: <code>ClassName ref;</code> — only a reference, no
+              object yet
+            </li>
+            <li>
+              Initialization: <code>ref = new ClassName();</code> — memory
+              allocated on heap
+            </li>
+            <li>
+              Both can be combined:
+              <code>ClassName ref = new ClassName();</code>
+            </li>
+            <li>Uninitialized reference holds <code>null</code></li>
+          </ul>
+          <div class="code-block">
+            <span class="cl">Student</span> s;
+            <span class="cm">// declaration (null)</span> s =
+            <span class="kw">new</span> <span class="cl">Student</span>();
+            <span class="cm">// initialization</span> s.name =
+            <span class="st">"Alice"</span>;
+            <span class="cm">// accessing field</span>
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Distinguish heap (object data) vs
+            stack (reference variable).
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-easy">Easy</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Life Cycle of an Object -->
+      <div
+        class="card"
+        data-cat="oop"
+        data-topic="life cycle object garbage collection"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(16, 185, 129, 0.12)"
+            >
+              🔄
+            </div>
+            <h2>Life Cycle of an Object</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(16, 185, 129, 0.12); color: var(--green)"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            An object's life cycle has four phases:
+            <strong>Creation → In Use → Unreachable → Garbage Collected</strong
+            >. Java's Garbage Collector (GC) automatically reclaims memory of
+            unreachable objects.
+          </p>
+          <ul class="key-points">
+            <li>
+              <strong>Creation:</strong> Memory allocated, constructor called
+            </li>
+            <li>
+              <strong>In Use:</strong> Referenced by at least one variable
+            </li>
+            <li>
+              <strong>Unreachable:</strong> No active references point to it
+            </li>
+            <li>
+              <strong>GC:</strong> JVM reclaims memory;
+              <code>finalize()</code> called before destruction
+            </li>
+          </ul>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Java does NOT have destructors like
+            C++. Garbage Collection is automatic and non-deterministic.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. Arrays in Java -->
+      <div
+        class="card"
+        data-cat="data"
+        data-topic="arrays java single multi dimensional"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(245, 158, 11, 0.12)"
+            >
+              📦
+            </div>
+            <h2>Arrays in Java</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(245, 158, 11, 0.12); color: var(--accent3)"
+            >Data</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            An <strong>Array</strong> is a fixed-size, ordered collection of
+            elements of the same data type stored in contiguous memory. Arrays
+            are objects in Java.
+          </p>
+          <ul class="key-points">
+            <li>1D array: <code>int[] arr = new int[5];</code></li>
+            <li>2D array: <code>int[][] mat = new int[3][3];</code></li>
+            <li>Index starts at 0; last index = length-1</li>
+            <li>
+              <code>arr.length</code> gives the size;
+              <code>ArrayIndexOutOfBoundsException</code> on invalid access
+            </li>
+            <li>
+              Default values: 0 for int, null for objects, false for boolean
+            </li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">int</span>[] marks = {<span class="num">85</span>,
+            <span class="num">90</span>, <span class="num">78</span>};
+            <span class="kw">for</span>(<span class="kw">int</span> m : marks)
+            <span class="cl">System</span>.out.println(m);
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Arrays are zero-indexed and have a
+            fixed size. Use <code>ArrayList</code> for dynamic sizing.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-easy">Easy</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. String in Java -->
+      <div
+        class="card"
+        data-cat="data"
+        data-topic="string java immutable string pool"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="topic-icon" style="background: rgba(0, 212, 255, 0.1)">
+              🔤
+            </div>
+            <h2>String in Java</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(245, 158, 11, 0.12); color: var(--accent3)"
+            >Data</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            A <strong>String</strong> in Java is an immutable sequence of
+            characters. Once created, its content cannot be changed. Strings are
+            objects of the <code>java.lang.String</code> class.
+          </p>
+          <ul class="key-points">
+            <li>
+              <strong>Immutable</strong>: Any modification creates a new String
+              object
+            </li>
+            <li>
+              String literals are stored in the
+              <strong>String Pool</strong> (heap)
+            </li>
+            <li>
+              <code>==</code> compares references;
+              <code>.equals()</code> compares content
+            </li>
+            <li>
+              Use <code>StringBuilder</code> / <code>StringBuffer</code> for
+              mutable strings
+            </li>
+          </ul>
+          <div class="code-block">
+            <span class="cl">String</span> s1 = <span class="st">"Hello"</span>;
+            <span class="cl">String</span> s2 = <span class="st">"Hello"</span>;
+            s1 == s2;
+            <span class="cm">// true (same pool ref)</span> s1.equals(s2);
+            <span class="cm">// true (same content)</span>
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Always use <code>.equals()</code> to
+            compare string content, never <code>==</code>.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 6. String Methods -->
+      <div
+        class="card"
+        data-cat="data"
+        data-topic="string methods length charAt substring indexOf toUpperCase"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(124, 58, 237, 0.15)"
+            >
+              🛠️
+            </div>
+            <h2>String Methods</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(245, 158, 11, 0.12); color: var(--accent3)"
+            >Data</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            Java's <code>String</code> class provides numerous built-in methods
+            for string manipulation, comparison, and searching.
+          </p>
+          <ul class="key-points">
+            <li><code>length()</code> – number of characters</li>
+            <li><code>charAt(i)</code> – char at index i</li>
+            <li><code>substring(s,e)</code> – extract part of string</li>
+            <li>
+              <code>indexOf(str)</code> – position of substring (-1 if not
+              found)
+            </li>
+            <li>
+              <code>toUpperCase()</code> / <code>toLowerCase()</code> – case
+              conversion
+            </li>
+            <li><code>trim()</code> – remove leading/trailing spaces</li>
+            <li><code>replace(a,b)</code> – replace occurrences</li>
+            <li><code>split(regex)</code> – split into array</li>
+            <li><code>contains(s)</code> – check if substring exists</li>
+          </ul>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Know that all these methods return a
+            new String (immutability). Memorize the top 5 for short-answer
+            questions.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-easy">Easy</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 7. Aggregation -->
+      <div
+        class="card"
+        data-cat="oop"
+        data-topic="aggregation has-a relationship composition"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(16, 185, 129, 0.12)"
+            >
+              🔗
+            </div>
+            <h2>Aggregation</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(0, 212, 255, 0.1); color: var(--accent)"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            <strong>Aggregation</strong> is a "HAS-A" relationship between
+            classes where one class contains a reference to another. The
+            contained object can exist independently.
+          </p>
+          <ul class="key-points">
+            <li>Represents a weak association (independent lifecycles)</li>
+            <li>
+              Example: <code>Department</code> HAS-A <code>Employee</code> —
+              employee exists without department
+            </li>
+            <li>
+              Contrast with <strong>Composition</strong> (strong association,
+              dependent lifecycle)
+            </li>
+            <li>Enables code reusability without inheritance</li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">class</span> <span class="cl">Address</span> {
+            <span class="cl">String</span> city; } <span class="kw">class</span>
+            <span class="cl">Student</span> {
+            <span class="cl">Address</span> addr;
+            <span class="cm">// aggregation</span> }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Aggregation = HAS-A (weak).
+            Composition = HAS-A (strong, child dies with parent).
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 8. Constructors -->
+      <div
+        class="card"
+        data-cat="methods"
+        data-topic="constructor default parameterized copy constructor overloading"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(245, 158, 11, 0.12)"
+            >
+              🏛️
+            </div>
+            <h2>Constructors</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(124, 58, 237, 0.15); color: #a78bfa"
+            >Methods</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            A <strong>Constructor</strong> is a special method called
+            automatically when an object is created. It has the same name as the
+            class and no return type.
+          </p>
+          <ul class="key-points">
+            <li>
+              <strong>Default constructor:</strong> No parameters, provided by
+              JVM if none defined
+            </li>
+            <li>
+              <strong>Parameterized constructor:</strong> Accepts arguments for
+              initialization
+            </li>
+            <li>
+              <strong>Copy constructor:</strong> Creates object from another
+              object of same class
+            </li>
+            <li>
+              Cannot be <code>static</code>, <code>abstract</code>, or have a
+              return type
+            </li>
+            <li><code>this()</code> calls another constructor in same class</li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">class</span> <span class="cl">Box</span> {
+            <span class="kw">int</span> w, h; <span class="cl">Box</span>(<span
+              class="kw"
+              >int</span
+            >
+            w, <span class="kw">int</span> h) {
+            <span class="cm">// parameterized</span>
+            <span class="kw">this</span>.w=w; <span class="kw">this</span>.h=h;
+            } }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> If you define any constructor, JVM
+            will NOT provide the default one automatically.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 9. Java Methods -->
+      <div
+        class="card"
+        data-cat="methods"
+        data-topic="java methods return type parameters call"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="topic-icon" style="background: rgba(0, 212, 255, 0.1)">
+              ⚙️
+            </div>
+            <h2>Java Methods</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(124, 58, 237, 0.15); color: #a78bfa"
+            >Methods</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            A <strong>method</strong> is a block of code that performs a
+            specific task, runs only when called, and helps with code
+            reusability and organization.
+          </p>
+          <ul class="key-points">
+            <li>Syntax: <code>returnType methodName(params) { body }</code></li>
+            <li>
+              <strong>void</strong> methods return nothing; others use
+              <code>return</code>
+            </li>
+            <li>
+              <strong>Pass by value</strong>: Java always passes copies of
+              arguments
+            </li>
+            <li>
+              Methods can call other methods (including themselves — recursion)
+            </li>
+            <li>Instance methods need an object; static methods don't</li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">int</span> add(<span class="kw">int</span> a,
+            <span class="kw">int</span> b) { <span class="kw">return</span> a +
+            b; } <span class="kw">int</span> result = add(<span class="num"
+              >3</span
+            >, <span class="num">4</span>); <span class="cm">// 7</span>
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Java is strictly "pass by value" —
+            even object references are passed by value (copy of the reference).
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-easy">Easy</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 10. Static -->
+      <div
+        class="card"
+        data-cat="modifiers"
+        data-topic="static keyword method variable class"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="topic-icon" style="background: rgba(244, 63, 94, 0.12)">
+              📌
+            </div>
+            <h2>Static Keyword</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(244, 63, 94, 0.1); color: var(--red)"
+            >Modifiers</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            The <strong>static</strong> keyword means the member belongs to the
+            <em>class itself</em>, not to any specific instance. Shared across
+            all objects.
+          </p>
+          <ul class="key-points">
+            <li>
+              <strong>Static variable:</strong> Single copy shared by all
+              objects (class variable)
+            </li>
+            <li>
+              <strong>Static method:</strong> Called using class name, no object
+              needed
+            </li>
+            <li>
+              Static methods <strong>cannot</strong> access instance
+              (non-static) members directly
+            </li>
+            <li>
+              <strong>Static block:</strong> Runs once when class is loaded
+            </li>
+            <li>
+              <code>main()</code> is static so JVM can call it without creating
+              an object
+            </li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">class</span> <span class="cl">Counter</span> {
+            <span class="kw">static int</span> count =
+            <span class="num">0</span>; <span class="cm">// shared</span>
+            <span class="cl">Counter</span>() { count++; } }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Static methods cannot use
+            <code>this</code> keyword because <code>this</code> refers to an
+            instance.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 11. this keyword -->
+      <div
+        class="card"
+        data-cat="oop"
+        data-topic="this keyword current object reference constructor chaining"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(124, 58, 237, 0.15)"
+            >
+              👆
+            </div>
+            <h2>this Keyword</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(0, 212, 255, 0.1); color: var(--accent)"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            <strong>this</strong> is a reference variable that refers to the
+            current object. Used to resolve naming conflicts and to call other
+            constructors.
+          </p>
+          <ul class="key-points">
+            <li>
+              Resolves ambiguity between instance variables and parameters with
+              same name
+            </li>
+            <li><code>this.field</code> — refers to instance variable</li>
+            <li>
+              <code>this()</code> — calls another constructor in same class
+              (constructor chaining)
+            </li>
+            <li><code>this</code> can be passed as an argument to a method</li>
+            <li>Cannot be used inside static methods</li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">class</span> <span class="cl">Person</span> {
+            <span class="cl">String</span> name;
+            <span class="cl">Person</span>(<span class="cl">String</span> name)
+            { <span class="kw">this</span>.name = name;
+            <span class="cm">// this = current obj</span> } }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> <code>this()</code> must be the FIRST
+            statement in a constructor.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 12. Overloading -->
+      <div
+        class="card"
+        data-cat="methods"
+        data-topic="overloading method compile time polymorphism same name"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(16, 185, 129, 0.12)"
+            >
+              🔀
+            </div>
+            <h2>Method Overloading</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(124, 58, 237, 0.15); color: #a78bfa"
+            >Methods</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            <strong>Overloading</strong> means defining multiple methods with
+            the same name but different parameter lists (number, type, or
+            order). Resolved at <strong>compile time</strong> (static
+            polymorphism).
+          </p>
+          <ul class="key-points">
+            <li>
+              Methods must differ in: number of params, type of params, or order
+              of params
+            </li>
+            <li>Return type alone is NOT enough to overload</li>
+            <li>Constructors can also be overloaded</li>
+            <li>
+              Also called <strong>compile-time polymorphism</strong> or
+              <strong>early binding</strong>
+            </li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">int</span> add(<span class="kw">int</span> a,
+            <span class="kw">int</span> b) { <span class="kw">return</span> a+b;
+            } <span class="kw">double</span> add(<span class="kw">double</span>
+            a, <span class="kw">double</span> b) {
+            <span class="kw">return</span> a+b; }
+            <span class="kw">int</span> add(<span class="kw">int</span> a,
+            <span class="kw">int</span> b, <span class="kw">int</span> c) {
+            <span class="kw">return</span> a+b+c; }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Overloading vs Overriding —
+            Overloading is same class, different params. Overriding is subclass,
+            same signature.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-medium">Medium</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 13. Finalizer -->
+      <div
+        class="card"
+        data-cat="oop"
+        data-topic="finalizer finalize garbage collection destructor"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="topic-icon" style="background: rgba(244, 63, 94, 0.12)">
+              🗑️
+            </div>
+            <h2>Finalizer (finalize)</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(0, 212, 255, 0.1); color: var(--accent)"
+            >OOP</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            The <strong>finalize()</strong> method is called by the Garbage
+            Collector just before destroying an object. Used to perform cleanup
+            (e.g., close files, release resources).
+          </p>
+          <ul class="key-points">
+            <li>Defined in <code>java.lang.Object</code> class</li>
+            <li>
+              Syntax: <code>protected void finalize() throws Throwable {}</code>
+            </li>
+            <li>Called <strong>at most once</strong> per object</li>
+            <li>Not guaranteed to be called — GC timing is unpredictable</li>
+            <li>
+              Deprecated in Java 9+; prefer <code>try-with-resources</code> or
+              <code>AutoCloseable</code>
+            </li>
+          </ul>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> finalize() is NOT a destructor. You
+            cannot force it to run. GC may never even call it.
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-hard">Hard</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+
+      <!-- 14. Visibility Modifiers & Package -->
+      <div
+        class="card"
+        data-cat="modifiers"
+        data-topic="visibility modifiers public private protected default package"
+      >
+        <div class="card-header">
+          <div class="card-title-group">
+            <div
+              class="topic-icon"
+              style="background: rgba(245, 158, 11, 0.12)"
+            >
+              🔒
+            </div>
+            <h2>Visibility Modifiers & Package</h2>
+          </div>
+          <span
+            class="category-tag"
+            style="background: rgba(244, 63, 94, 0.1); color: var(--red)"
+            >Modifiers</span
+          >
+        </div>
+        <div class="card-body">
+          <p class="definition">
+            <strong>Visibility (Access) Modifiers</strong> control where a
+            class, method, or variable can be accessed from. A
+            <strong>Package</strong> is a namespace that groups related classes.
+          </p>
+          <ul class="key-points">
+            <li><code>public</code> — accessible everywhere</li>
+            <li>
+              <code>private</code> — accessible only within the same class
+            </li>
+            <li>
+              <code>protected</code> — accessible within same package +
+              subclasses
+            </li>
+            <li>
+              <code>default</code> (no keyword) — accessible within same package
+              only
+            </li>
+            <li>
+              <strong>Package:</strong> declared with
+              <code>package com.example;</code> at top of file
+            </li>
+            <li>
+              Import packages with <code>import java.util.ArrayList;</code>
+            </li>
+          </ul>
+          <div class="code-block">
+            <span class="kw">package</span> com.school;
+            <span class="kw">public class</span>
+            <span class="cl">Student</span> { <span class="kw">private</span>
+            <span class="cl">String</span> name;
+            <span class="cm">// only here</span> <span class="kw">public</span>
+            <span class="cl">String</span> getName() {
+            <span class="kw">return</span> name; } }
+          </div>
+          <div class="exam-tip">
+            ⭐ <strong>Exam Tip:</strong> Remember the access table —
+            <em>private &lt; default &lt; protected &lt; public</em> (increasing
+            accessibility).
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="diff-badge diff-hard">Hard</span>
+          <button class="mark-btn" onclick="toggleLearned(this)">
+            ✓ Mark Learned
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="core.js"></script>
+  </body>
+</html>
