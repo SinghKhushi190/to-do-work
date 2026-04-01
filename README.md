@@ -1,7 +1,7 @@
 # to-do-work
 # *image gallery with lightbox.* </br>
 # *Recipe Sharing website(landing page).*
-<img width="1887" height="893" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
+<img width="1444" height="693" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
 
 </br>
 #*Registration From.*</br>
