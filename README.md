@@ -1,13 +1,11 @@
 # to-do-work
-# *image gallery with lightbox.* </br>
+# *image gallery with lightbox.*
 # *Recipe Sharing website(landing page).*
 <img width="1444" height="693" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
 
-</br>
-#*Registration From.*</br>
-*BMI Calculator.*
-</br>
-*api and full stack artichecture*
+# *Registration From.*</br>
+# *BMI Calculator.*
+ # *api and full stack artichecture*
 # Exam ready using ai 
 This repository provides structured notes and code examples for  topics. 
 The content includes important concepts such as:
