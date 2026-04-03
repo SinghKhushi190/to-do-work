@@ -16,7 +16,7 @@ This project provides basic arithmetic operations with a clean and responsive UI
 
 # *image gallery with lightbox.*
 # *Recipe Sharing website(landing page).*
-<img width="1444" height="693" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
+<img width="944" height="993" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
 
 # *Registration From.*</br>
 # *BMI Calculator.*
