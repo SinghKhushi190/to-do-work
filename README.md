@@ -5,6 +5,7 @@
 🧮 Calculator Web App
 A simple and modern Calculator Web Application built using HTML, CSS, and JavaScript.
 This project provides basic arithmetic operations with a clean and responsive UI.
+
 ✨ Features
 ➕ Addition
 ➖ Subtraction
