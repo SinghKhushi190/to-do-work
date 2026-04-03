@@ -6,12 +6,12 @@
 A simple and modern Calculator Web Application built using HTML, CSS, and JavaScript.
 This project provides basic arithmetic operations with a clean and responsive UI.
 
-✨ Features
-➕ Addition
-➖ Subtraction
-✖️ Multiplication
-➗ Division
-🔄 Clear button (C)
+✨ Features</br>
+➕ Addition</br>
+➖ Subtraction</br>
+✖️ Multiplication</br>
+➗ Division</br>
+🔄 Clear button (C)</br>
 🎯 Real-time input display
 
 # *image gallery with lightbox.*
