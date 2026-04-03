@@ -1,6 +1,17 @@
 # to-do-work
 # Calculator
-<img width="196" height="599" alt="Screenshot 2026-04-03 222154" src="https://github.com/user-attachments/assets/573ddfbc-6c18-466d-80fc-2ee12d1107d0" />
+<img width="196" height="599" alt="Screenshot 2026-04-03 222154" src="https://github.com/user-attachments/assets/573ddfbc-6c18-466d-80fc-2ee12d1107d0" /> 🧮 Calculator Web App
+
+A simple and modern Calculator Web Application built using HTML, CSS, and JavaScript.
+This project provides basic arithmetic operations with a clean and responsive UI.
+
+✨ Features
+➕ Addition
+➖ Subtraction
+✖️ Multiplication
+➗ Division
+🔄 Clear button (C)
+🎯 Real-time input display
 
 # *image gallery with lightbox.*
 # *Recipe Sharing website(landing page).*
