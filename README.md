@@ -14,7 +14,17 @@ This project provides basic arithmetic operations with a clean and responsive UI
 🔄 Clear button (C)</br>
 🎯 Real-time input display
 
-# *image gallery with lightbox.*
+# 📸image gallery with lightbox.
+A simple and elegant Light Gallery website built using HTML, CSS, and basic JavaScript.</br>
+It displays images in a beautiful grid layout with a lightbox effect for better viewing.
+
+📌 Features
+🖼️ Responsive image gallery</br>
+🔍 Lightbox (click to view full image)</br>
+🎨 Clean and minimal UI</br>
+⚡ Fast and lightweight</br>
+📱 Mobile-friendly design
+
 # *Recipe Sharing website(landing page).*
 <img width="944" height="993" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
 
