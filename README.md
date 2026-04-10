@@ -19,13 +19,15 @@ A simple and elegant Light Gallery website built using HTML, CSS, and basic Java
 It displays images in a beautiful grid layout with a lightbox effect for better viewing.
 
 📌 Features
+
 🖼️ Responsive image gallery</br>
 🔍 Lightbox (click to view full image)</br>
 🎨 Clean and minimal UI</br>
 ⚡ Fast and lightweight</br>
 📱 Mobile-friendly design
 
-🛠️ Technologies Used
+🛠️ Technologies
+
 HTML5</br>
 CSS3</br>
 JavaScript
