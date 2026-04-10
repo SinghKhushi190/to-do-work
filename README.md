@@ -25,6 +25,11 @@ It displays images in a beautiful grid layout with a lightbox effect for better 
 ⚡ Fast and lightweight</br>
 📱 Mobile-friendly design
 
+🛠️ Technologies Used
+HTML5</br>
+CSS3</br>
+JavaScript
+
 # *Recipe Sharing website(landing page).*
 <img width="944" height="993" alt="Screenshot 2026-04-01 224106" src="https://github.com/user-attachments/assets/589b3244-3af0-41f0-b46b-5359350ef3ea" />
 
