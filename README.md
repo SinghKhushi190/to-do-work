@@ -58,7 +58,18 @@ A beautiful and user-friendly Recipe Website where users can explore delicious d
 📱 Responsive design (mobile + desktop)</br>
 ❤️ Clean and modern UI
 
-# *Registration From.*</br>
+# Registration From
+A simple and responsive Registration Form built using HTML, CSS, and JavaScript.</br>
+This project demonstrates form design, input handling, and basic validation.
+
+⚡Features
+
+ ✅User-friendly registration form</br>
+ ✅Form validation using JavaScript</br>
+ ✅Clean and modern UI</br>
+ ✅Responsive design</br>
+ ✅ Lightweight and fast
+
 # *BMI Calculator.*
  # *api and full stack artichecture*
 # Exam ready using ai 
