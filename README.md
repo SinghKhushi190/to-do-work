@@ -11,7 +11,7 @@ This repository showcases practice work, mini projects, and experiments to impro
 🧩 Multiple mini projects in one repo
 
 # Calculator
-<img width="496" height="299" alt="Screenshot 2026-04-03 222154" src="https://github.com/user-attachments/assets/573ddfbc-6c18-466d-80fc-2ee12d1107d0" /> 
+<img width="396" height="299" alt="Screenshot 2026-04-03 222154" src="https://github.com/user-attachments/assets/573ddfbc-6c18-466d-80fc-2ee12d1107d0" /> 
 
 🧮 Calculator Web App
 A simple and modern Calculator Web Application built using HTML, CSS, and JavaScript.
